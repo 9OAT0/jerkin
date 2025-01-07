@@ -5,9 +5,9 @@
   tasks:
     - name: Building Docker Image
       docker_image:
-         name: team12-spering:latest #docker image name
+         name: team12_spering:latest #docker image name
          source: build
          build:
-            path: ~/team12-spering #path ที่เก็บไฟล์ sourcecode 
+            path: ~/team12_spering #path ที่เก็บไฟล์ sourcecode 
          state: present
          force_source: true
