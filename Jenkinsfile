@@ -18,7 +18,12 @@ pipeline {
         stage('Create Docker Container') {
             steps {
                 sh '''
-                ssh -i ~/.ssh/id_rsa root@13.60.223.206 "docker run -d --name team12_container -p 80:80 team12_image"
+                ssh -i ~/.ssh/id_rsa root@13.60.223.206 "
+                if docker ps -a --filter 'name=team12_container' --format '{{.ID}}' | grep .; then
+                    docker rm -f team12_container
+                fi
+                docker run -d --name team12_container -p 80:80 team12_image
+                "
                 '''
             }
         }
